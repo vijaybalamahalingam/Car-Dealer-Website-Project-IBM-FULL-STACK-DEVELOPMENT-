@@ -25,11 +25,11 @@ The project is then divided into several smaller step.
 2. Created Django models and views to manage car model and car make
 3. Created Django proxy services and views to integrate dealers, reviews, and cars together
  
-**Add dynamic pages with Django templates**
+**Added dynamic pages with Django templates**
 1. Created a page that shows all the dealers
 2. Createdd a page that show reviews for a selected dealer
 3. Create a page that let's the end user add a review for a selected dealer
 
-**Containerize your application**
+**Containerized my application**
 1. Added deployment artifacts to your application
 2. Deployed your application
