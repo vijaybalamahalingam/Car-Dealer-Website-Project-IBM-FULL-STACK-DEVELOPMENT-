@@ -7,7 +7,7 @@ The project is then divided into several smaller step.
 ## Project Breakdown
 
 **Prework: Signed up for IBM Cloud account and created a Watson Natural language Understanding service**
-1. Created an IBM cloud account if you don't have one already.
+1. Created an IBM cloud account.
 2. Created an instance of the Natural Language Understanding (NLU) service.
 
 **Forked the project Github repository with a project then build and deploy the template project**
