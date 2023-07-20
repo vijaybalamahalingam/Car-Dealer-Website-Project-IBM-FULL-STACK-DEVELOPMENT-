@@ -11,7 +11,7 @@ The project is then divided into several smaller step.
 2. Created an instance of the Natural Language Understanding (NLU) service.
 
 **Forked the project Github repository with a project then build and deploy the template project**
-1. Forked the repository in your account
+1. Forked the repository in my account
 2. Cloned the repository in the theia lab environment
 3. Created static pages to finish the user stories
 4. Deployed the application on IBM Cloud
@@ -31,5 +31,5 @@ The project is then divided into several smaller step.
 3. Create a page that let's the end user add a review for a selected dealer
 
 **Containerized my application**
-1. Added deployment artifacts to your application
-2. Deployed your application
+1. Added deployment artifacts to my application
+2. Deployed my application
