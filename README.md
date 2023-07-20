@@ -6,21 +6,21 @@ The project is then divided into several smaller step.
 
 ## Project Breakdown
 
-**Prework: Signed up for IBM Cloud account and create a Watson Natural language Understanding service**
+**Prework: Signed up for IBM Cloud account and created a Watson Natural language Understanding service**
 1. Created an IBM cloud account if you don't have one already.
 2. Created an instance of the Natural Language Understanding (NLU) service.
 
-**Fork the project Github repository with a project then build and deploy the template project**
+**Forked the project Github repository with a project then build and deploy the template project**
 1. Forked the repository in your account
 2. Cloned the repository in the theia lab environment
 3. Created static pages to finish the user stories
 4. Deployed the application on IBM Cloud
 
-**Add user management to the application**
+**Added user management to the application**
 1. Implemented user management using the Django user authentication system.
 2. Set up continuous integration and delivery
 
-**Implement backend services**
+**Implemented backend services**
 1. Created cloud functions to manage dealers and reviews
 2. Created Django models and views to manage car model and car make
 3. Created Django proxy services and views to integrate dealers, reviews, and cars together
