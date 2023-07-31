@@ -46,3 +46,14 @@ urlpatterns = [
 
 
     server/djangoapp/views.py # route for get_dealer_details
+
+#  route for add_review
+
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    # Existing URL patterns...
+    path('dealer/<int:dealer_id>/', views.get_dealer_details, name='dealer_details'),
+    path('add_review/<int:dealer_id>/', views.add_review, name='add_review'),
+]
