@@ -1,4 +1,14 @@
 {
-    "COUCH_URL": "",
-    "IAM_API_KEY": ""
+    "COUCH_URL": "https://cloud.ibm.com/services/cloudantnosqldb/crn%3Av1%3Abluemix%3Apublic%3Acloudantnosqldb%3Ain-che%3Aa%2F73fa5bc70292409d876efb5276011bb2%3A9b4ad2c6-428b-4887-898d-ec0af7bcea7f%3A%3A?paneId=credentials",
+    "IAM_API_KEY": "{
+  "apikey": "QBxX1vGCcm3yCmBj7t_Fl0oHcaRReyTvCTu_PDm5DPSv",
+  "host": "3ddbced0-d390-4942-83a1-1100fdc39693-bluemix.cloudantnosqldb.appdomain.cloud",
+  "iam_apikey_description": "Auto-generated for key crn:v1:bluemix:public:cloudantnosqldb:in-che:a/73fa5bc70292409d876efb5276011bb2:9b4ad2c6-428b-4887-898d-ec0af7bcea7f:resource-key:12016dd8-6520-42e8-bb8b-4f1ed3407f12",
+  "iam_apikey_name": "Service credentials-1",
+  "iam_role_crn": "crn:v1:bluemix:public:iam::::serviceRole:Manager",
+  "iam_serviceid_crn": "crn:v1:bluemix:public:iam-identity::a/73fa5bc70292409d876efb5276011bb2::serviceid:ServiceId-d3948f4e-a6b6-455f-813e-e6c1387b409b",
+  "url": "https://3ddbced0-d390-4942-83a1-1100fdc39693-bluemix.cloudantnosqldb.appdomain.cloud",
+  "username": "3ddbced0-d390-4942-83a1-1100fdc39693-bluemix"
+}",
+    "COUCH_USERNAME": "3ddbced0-d390-4942-83a1-1100fdc39693-bluemix"
 }
