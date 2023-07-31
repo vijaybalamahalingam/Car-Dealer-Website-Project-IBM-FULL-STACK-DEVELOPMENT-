@@ -54,6 +54,17 @@ def get_dealers_from_cf(url, **kwargs):
 
     return results
 
+...
+  params = dict()
+  params["text"] = kwargs["text"]
+  params["version"] = kwargs["version"]
+  params["features"] = kwargs["features"]
+  params["return_analyzed_text"] = kwargs["return_analyzed_text"]
+  response = requests.get(url, params=params, headers={'Content-Type': 'application/json'},
+                                    auth=HTTPBasicAuth('apikey', api_key))
+...
+
+
 # Create a get_dealer_reviews_from_cf method to get reviews by dealer id from a cloud function
 import requests
 
@@ -103,8 +114,63 @@ def get_dealer_reviews_from_cf(url, dealerId):
 
     return reviews
 
+...
+review_obj.sentiment = analyze_review_sentiments(review_obj.review)
+
 
 # Create an `analyze_review_sentiments` method to call Watson NLU and analyze text
-# def analyze_review_sentiments(text):
-# - Call get_request() with specified arguments
-# - Get the returned sentiment label such as Positive or Negative
+
+import nltk
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+
+# Assuming the DealerReview class is defined in another file
+
+# Download the necessary resources for SentimentIntensityAnalyzer
+nltk.download('vader_lexicon')
+
+def analyze_review_sentiments(dealerreview):
+    # Initialize SentimentIntensityAnalyzer
+    sia = SentimentIntensityAnalyzer()
+
+    # Perform sentiment analysis on the review
+    review_sentiment = sia.polarity_scores(dealerreview.review)
+
+    # Get the sentiment score
+    sentiment_score = review_sentiment['compound']
+
+    # Assign sentiment label based on the compound score
+    if sentiment_score >= 0.05:
+        sentiment = 'Positive'
+    elif sentiment_score <= -0.05:
+        sentiment = 'Negative'
+    else:
+        sentiment = 'Neutral'
+
+    # Set the sentiment attribute of the DealerReview object
+    dealerreview.sentiment = sentiment
+
+    # new post_request(url, json_payload, **kwargs):
+    
+    import requests
+
+def post_request(url, json_payload, **kwargs):
+    response = requests.post(url, params=kwargs, json=json_payload)
+    return response
+    
+    url = "https://api.example.com/create_review"
+payload = {
+    "dealership": "Example Dealer",
+    "name": "John Doe",
+    "purchase": True,
+    "review": "Great experience!",
+    "purchase_date": "2023-07-31",
+    "car_make": "Toyota",
+    "car_model": "Camry",
+    "car_year": 2022,
+    "sentiment": "Positive",
+    "id": 12345
+}
+response = post_request(url, json_payload=payload, auth=("username", "password"))
+print(response.status_code)
+print(response.json())
+
