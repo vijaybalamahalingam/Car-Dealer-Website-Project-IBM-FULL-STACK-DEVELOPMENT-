@@ -239,8 +239,60 @@ def get_dealerships(request):
         return HttpResponse(dealer_names)
 
 # Create a `get_dealer_details` view to render the reviews of a dealer
-# def get_dealer_details(request, dealer_id):
-# ...
+
+
+
+
+
+
+
+from django.shortcuts import render
+import requests
+
+class DealerReview:
+    # DealerReview class definition here...
+
+def get_request(url):
+    response = requests.get(url)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        return None
+
+def get_dealer_reviews_from_cf(dealer_id):
+    url = f"your_cloud_function_endpoint"  # Replace with your cloud function endpoint
+    reviews_data = get_request(f"{url}/reviews?dealerId={dealer_id}")
+    if not reviews_data:
+        return []
+
+    reviews = []
+    for review_data in reviews_data:
+        review = DealerReview(
+            review_data['dealership'],
+            review_data['name'],
+            review_data['purchase'],
+            review_data['review'],
+            review_data['purchase_date'],
+            review_data['car_make'],
+            review_data['car_model'],
+            review_data['car_year'],
+            review_data['sentiment'],
+            review_data['id']
+        )
+        reviews.append(review)
+
+    return reviews
+
+def get_dealer_details(request, dealer_id):
+    dealer_reviews = get_dealer_reviews_from_cf(dealer_id)
+    # Do any other processing with dealer_reviews data if needed
+    return render(request, 'dealer_details.html', {'dealer_reviews': dealer_reviews})
+
+
+
+
+
+
 
 # Create a `add_review` view to submit a review
 # def add_review(request, dealer_id):
