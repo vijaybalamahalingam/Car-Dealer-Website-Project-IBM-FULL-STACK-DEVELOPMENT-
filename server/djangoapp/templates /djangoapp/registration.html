@@ -4,8 +4,28 @@
     <meta charset="UTF-8">
     {% load static %}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Sign Up - Car Dealership</title>
 </head>
     <body>
-    <!--Add a registration form here -->
+     <div class="container">
+        <h2>Sign Up</h2>
+        <form id="signupForm">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" required>
+
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" required>
+
+            <label for="username">Username:</label>
+            <input type="text" id="username" required>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" required>
+
+            <input type="submit" value="Sign Up">
+        </form>
+      <div class="signup-button">
+            <a href="signup-view.html">Sign Up</a> 
+        </div>
     </body>
 </html>
