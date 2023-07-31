@@ -9,7 +9,7 @@ urlpatterns = [
     # view refers to the view function
     # name the URL
 
-    # path for about view
+    server/djangoapp/views.py  # path for about view
 
     # path for contact us view
 
