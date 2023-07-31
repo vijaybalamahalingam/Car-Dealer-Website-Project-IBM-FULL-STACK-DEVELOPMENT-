@@ -9,15 +9,15 @@ urlpatterns = [
     # view refers to the view function
     # name the URL
 
-    server/djangoapp/views.py  # path for about view
+    # path for about view
 
     # path for contact us view
 
     # path for registration
 
-    # path for login
+    server/djangoapp/views.py # path for login
 
-    # path for logout
+    server/djangoapp/views.py # path for logout
 
     path(route='', view=views.get_dealerships, name='index'),
 
