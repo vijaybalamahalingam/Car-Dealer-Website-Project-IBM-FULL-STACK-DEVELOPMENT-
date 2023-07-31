@@ -51,9 +51,53 @@ def get_dealers_from_cf(url, **kwargs):
     return results
 
 # Create a get_dealer_reviews_from_cf method to get reviews by dealer id from a cloud function
-# def get_dealer_by_id_from_cf(url, dealerId):
-# - Call get_request() with specified arguments
-# - Parse JSON results into a DealerView object list
+import requests
+
+class DealerReview:
+    def __init__(self, dealership, name, purchase, review, purchase_date, car_make, car_model, car_year, sentiment, id):
+        self.dealership = dealership
+        self.name = name
+        self.purchase = purchase
+        self.review = review
+        self.purchase_date = purchase_date
+        self.car_make = car_make
+        self.car_model = car_model
+        self.car_year = car_year
+        self.sentiment = sentiment
+        self.id = id
+
+    def __str__(self):
+        return f"Review by {self.name} for {self.dealership} - Sentiment: {self.sentiment}"
+
+def get_dealer_reviews_from_cf(url, dealerId):
+    def get_request(url):
+        response = requests.get(url)
+        if response.status_code == 200:
+            return response.json()
+        else:
+            return None
+
+    reviews_data = get_request(f"{url}/reviews?dealerId={dealerId}")
+    if not reviews_data:
+        return []
+
+    reviews = []
+    for review_data in reviews_data:
+        review = DealerReview(
+            review_data['dealership'],
+            review_data['name'],
+            review_data['purchase'],
+            review_data['review'],
+            review_data['purchase_date'],
+            review_data['car_make'],
+            review_data['car_model'],
+            review_data['car_year'],
+            review_data['sentiment'],
+            review_data['id']
+        )
+        reviews.append(review)
+
+    return reviews
 
 
 # Create an `analyze_review_sentiments` method to call Watson NLU and analyze text
