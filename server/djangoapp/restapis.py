@@ -25,6 +25,10 @@ def get_request(url, **kwargs):
     json_data = json.loads(response.text)
     return json_data
 
+requests.get(url, params=params, headers={'Content-Type': 'application/json'},
+                                    auth=HTTPBasicAuth('apikey', api_key))
+
+
 # Create a `post_request` to make HTTP POST requests
 # e.g., response = requests.post(url, params=kwargs, json=payload)
 
