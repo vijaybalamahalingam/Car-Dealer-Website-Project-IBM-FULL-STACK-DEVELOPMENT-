@@ -290,6 +290,98 @@ def get_dealer_details(request, dealer_id):
 
 
 
+# new def add_review(request, dealer_id): method to handle review post request
+
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+import requests
+
+# Assuming the DealerReview class is defined in another file
+from .models import DealerReview
+
+@login_required
+def add_review(request, dealer_id):
+    if request.method == 'POST':
+        user = request.user
+
+        # Check if the user is authenticated
+        if not user.is_authenticated:
+            return render(request, 'error.html', {'error_message': 'Only authenticated users can post reviews.'})
+
+        # Get the dealer information from the cloud function or database
+        # Replace "your_cloud_function_endpoint" with the actual endpoint URL of your cloud function or database
+        url = f"your_cloud_function_endpoint/reviews/{dealer_id}"
+        response = requests.get(url)
+
+        if response.status_code != 200:
+            return render(request, 'error.html', {'error_message': 'Dealer not found.'})
+
+        dealer_info = response.json()
+
+        # Create a dictionary object called review to append review details
+        review = {
+            'time': '2023-07-31',  # Replace with the actual time of the review
+            'name': user.username,
+            'dealership': dealer_info['dealership'],
+            'review': request.POST.get('review', ''),
+            'purchase': True if request.POST.get('purchase', '') == 'True' else False,
+            # Add any other attributes you defined in your review-post cloud function or database here
+        }
+
+        # Create a new DealerReview object and save it to the database
+        new_review = DealerReview(**review)
+        new_review.save()
+
+        return render(request, 'review_added.html', {'new_review': new_review})
+    else:
+        return render(request, 'add_review.html', {'dealer_id': dealer_id})
+
+
+# dictionary object called json_payload
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from .models import DealerReview
+from .restapis import post_request
+
+@login_required
+def add_review(request, dealer_id):
+    if request.method == 'POST':
+        user = request.user
+
+        # Check if the user is authenticated
+        if not user.is_authenticated:
+            return render(request, 'error.html', {'error_message': 'Only authenticated users can post reviews.'})
+
+        # Get the dealer information from the cloud function or database
+        # Replace "your_cloud_function_endpoint" with the actual endpoint URL of your cloud function or database
+        url = f"your_cloud_function_endpoint/reviews/{dealer_id}"
+        response = requests.get(url)
+
+        if response.status_code != 200:
+            return render(request, 'error.html', {'error_message': 'Dealer not found.'})
+
+        dealer_info = response.json()
+
+        # Create a dictionary object called review to append review details
+        review = {
+            'time': '2023-07-31',  # Replace with the actual time of the review
+            'name': user.username,
+            'dealership': dealer_info['dealership'],
+            'review': request.POST.get('review', ''),
+            'purchase': True if request.POST.get('purchase', '') == 'True' else False,
+            # Add any other attributes you defined in your review-post cloud function or database here
+        }
+
+        # Create another dictionary object called json_payload with the key "review"
+        json_payload = {"review": review}
+
+        # Call the post_request method with the payload
+        post_response = post_request(url, json_payload, dealerId=dealer_id)
+
+        # Return the result of post_request to the add_review view method
+        return render(request, 'post_response.html', {'post_response': post_response.json()})
+    else:
+        return render(request, 'add_review.html', {'dealer_id': dealer_id})
 
 
 
