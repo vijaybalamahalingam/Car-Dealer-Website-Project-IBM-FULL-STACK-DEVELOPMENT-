@@ -15,6 +15,8 @@ urlpatterns = [
 
     # path for registration
 
+    server/djangoapp/views.py # path for signup
+
     server/djangoapp/views.py # path for login
 
     server/djangoapp/views.py # path for logout
