@@ -12,5 +12,13 @@
 </head>
     <body>
     <!--Add review form here -->
+    <form method="post" action="{% url 'djangoapp:add_review' %}">
+      {% csrf_token %}
+      <!-- Add your form fields here -->
+      <input type="text" name="review_text" placeholder="Enter your review" required>
+      <input type="number" name="rating" placeholder="Rating (1-5)" min="1" max="5" required>
+      <button type="submit">Submit Review</button>
+    </form>
+
     </body>
 </html>
