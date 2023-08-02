@@ -240,11 +240,25 @@ def get_dealerships(request):
 
 # Create a `get_dealer_details` view to render the reviews of a dealer
 
+def get_dealer_reviews_from_cf():
+    # Sample implementation, replace this with your actual method to get reviews.
+    return [
+        {'review_id': 1, 'text': 'Great service!', 'rating': 5},
+        {'review_id': 2, 'text': 'Very helpful staff.', 'rating': 4},
+        {'review_id': 3, 'text': 'Could be better.', 'rating': 3},
+    ]
 
+# Create an empty context dictionary.
+context = {}
 
+# Get the reviews from the get_dealer_reviews_from_cf method.
+reviews = get_dealer_reviews_from_cf()
 
+# Append the reviews list to the context dictionary.
+context['reviews'] = reviews
 
-
+# Now you can access the reviews from the context dictionary.
+print(context['reviews'])
 
 from django.shortcuts import render
 import requests
