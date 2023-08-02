@@ -10,6 +10,21 @@
     <body>
 
     <!--Add a nav bar here -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <!-- Add login, logout, and signup menu items -->
+            <li><a href="login.html">Login</a></li>
+            <li><a href="logout.html">Logout</a></li>
+            <li><a href="signup.html">Signup</a></li>
+            <!-- End of login, logout, and signup menu items -->
+            <!-- Add more navigation links as needed -->
+        </ul>
+    </nav>
+    {% if user.is_authenticated %}
+    <a href="/add_review">Add a Review</a>
 
     <!-- Add reviews as cards -->
 
